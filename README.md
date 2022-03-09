@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6f168d89-aa6c-45c3-8080-57aa07ba3140/deploy-status)](https://app.netlify.com/sites/telos-revoke/deploys)
+
 <p align="center">
   <img width="400" src="public/revoke.png">
 </p>
