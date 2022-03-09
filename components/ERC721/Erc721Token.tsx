@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useCallback, useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 import { Erc721TokenData } from '../common/interfaces'
 import { Allowance } from './interfaces'
@@ -22,11 +22,7 @@ function Erc721Token({ token, inputAddress, openSeaProxyAddress }: Props) {
   const [{ data: networkData }] = useNetwork()
   const chainId = networkData?.chain?.id ?? 1
 
-  useEffect(() => {
-    loadData()
-  }, [inputAddress])
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {    
     setLoading(true)
 
     const unlimitedAllowances = await getUnlimitedAllowancesFromApprovals(token.contract, inputAddress, token.approvalsForAll)
@@ -38,7 +34,11 @@ function Erc721Token({ token, inputAddress, openSeaProxyAddress }: Props) {
 
     setAllowances(allowancesWithDisplayAddresses)
     setLoading(false)
-  }
+  }, [chainId, inputAddress, openSeaProxyAddress, provider, token]);
+
+  useEffect(() => {
+    loadData()
+  }, [inputAddress, loadData]);
 
   // // Do not render tokens without balance or allowances
   if (token.balance === '0' && allowances.length === 0) return null
