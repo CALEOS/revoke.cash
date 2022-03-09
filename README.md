@@ -19,7 +19,7 @@ If you want to learn more about (unlimited) ERC20 allowances, I wrote an article
 
 ## Running locally
 ```
-git clone git@github.com:rkalis/revoke.cash.git
+git clone https://github.com/telosnetwork/revoke.cash.git 
 cd revoke.cash
 yarn
 yarn dev #or `yarn start` to run prod build 
