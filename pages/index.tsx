@@ -46,7 +46,7 @@ const App: NextPage = () => {
     } else {
       try {
         // Use a default provider with a free Infura key if web3 is not available
-        const provider = new providers.InfuraProvider('mainnet', `${'88583771d63544aa'}${'ba1006382275c6f8'}`)
+        const provider = new providers.EtherscanProvider('homestead', process.env.ETHERSCAN_API_KEY)
 
         // Check that the provider is available (and not rate-limited) by sending a dummy request
         const dummyRequest = '{"method":"eth_getCode","params":["0x1f9840a85d5af5bf1d1762f925bdaddc4201f984","latest"],"id":0,"jsonrpc":"2.0"}'

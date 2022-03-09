@@ -1,5 +1,14 @@
 [context.production.environment]
-NODE_VERSION = "14"
+  NODE_VERSION = "14"
 
 [[plugins]]
-package = "@netlify/plugin-nextjs"
+  package = "@netlify/plugin-nextjs"
+
+[build]
+  command = "yarn build"
+  publish = ".next"
+
+[[redirects]]
+  from = “/*”
+  to = “/index.html”
+  status = 200
