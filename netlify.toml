@@ -1,3 +1,2 @@
 [context.production.environment]
-  NODE_VERSION="14"
-  NETLIFY_NEXT_PLUGIN_SKIP=true
+  NODE_VERSION = "14"
