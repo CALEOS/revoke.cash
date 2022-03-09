@@ -29,7 +29,7 @@ const AddressInput: React.FC<Props> = ({ setInputAddress }) => {
 
   const handleFormInputChanged = async (event: ChangeEvent<HTMLInputElement>) => {
       // If no provider is set, this means that the browser is not web3 enabled
-    // and the fallback Infura provider is currently rate-limited
+    // and the fallback Etherscan provider is currently rate-limited
     if (!provider) {
       alert('Please use a web3 enabled browser to use revoke.cash')
       return

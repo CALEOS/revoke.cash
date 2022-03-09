@@ -45,14 +45,13 @@ const App: NextPage = () => {
       console.log('Using injected "window.web3" provider')
     } else {
       try {
-        // Use a default provider with a free Infura key if web3 is not available
+        // Use a default provider with a free Etherscan key if web3 is not available
         const provider = new providers.EtherscanProvider('homestead', process.env.ETHERSCAN_API_KEY)
 
         // Check that the provider is available (and not rate-limited) by sending a dummy request
-        const dummyRequest = '{"method":"eth_getCode","params":["0x1f9840a85d5af5bf1d1762f925bdaddc4201f984","latest"],"id":0,"jsonrpc":"2.0"}'
-        await axios.post(provider.connection.url, dummyRequest)
+        await provider.getCode("0x1f9840a85d5af5bf1d1762f925bdaddc4201f984");
         await updateProvider(provider)
-        console.log('Using fallback Infura provider')
+        console.log('Using fallback Etherscan provider')
       } catch {
         console.log('No web3 provider available')
       }
