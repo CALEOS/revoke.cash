@@ -1,7 +1,7 @@
 import { Contract } from 'ethers'
 import { getAddress } from 'ethers/lib/utils'
 import { Log } from '@ethersproject/abstract-provider'
-import React, { useEffect, useState } from 'react'
+import React, {useCallback, useEffect, useState } from 'react'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { Erc20TokenData, TokenMapping } from '../common/interfaces'
 import Erc20Token from './Erc20Token'
@@ -35,11 +35,8 @@ function Erc20TokenList({
   const [{ data: networkData }] = useNetwork()
   const chainId = networkData?.chain?.id ?? 1
 
-  useEffect(() => {
-    loadData()
-  }, [inputAddress, provider])
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {    
     if (!inputAddress) return
     if (!(provider instanceof multicall.MulticallProvider)) return
 
@@ -76,7 +73,11 @@ function Erc20TokenList({
 
     setTokens(sortedTokens)
     setLoading(false)
-  }
+  }, [chainId, inputAddress, provider, tokenMapping]);
+
+  useEffect(() => {
+    loadData()
+  }, [inputAddress, provider])
 
   if (loading) {
     return (<ClipLoader css="margin: 10px;" size={40} color={'#000'} loading={loading} />)

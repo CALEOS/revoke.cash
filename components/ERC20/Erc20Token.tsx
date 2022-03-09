@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 import { Erc20TokenData } from '../common/interfaces'
 import { Allowance } from './interfaces'
@@ -16,11 +16,7 @@ function Erc20Token({ token, inputAddress }: Props) {
   const [allowances, setAllowances] = useState<Allowance[]>([])
   const [loading, setLoading] = useState<boolean>(true)
 
-  useEffect(() => {
-    loadData()
-  }, [inputAddress])
-
-  const loadData = async () => {
+  const loadData = useCallback(async (token) => {    
     setLoading(true)
 
     // Filter out zero-value allowances and sort from high to low
@@ -30,7 +26,11 @@ function Erc20Token({ token, inputAddress }: Props) {
 
     setAllowances(loadedAllowances)
     setLoading(false)
-  }
+  }, [inputAddress]);
+
+  useEffect(() => {
+    loadData(token)
+  }, [loadData, token, inputAddress])
 
   // Do not render tokens without balance or allowances
   const balanceString = toFloat(Number(token.balance), token.decimals)
