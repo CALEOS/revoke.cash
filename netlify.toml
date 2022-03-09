@@ -1,2 +1,5 @@
 [context.production.environment]
-  NODE_VERSION = "14"
+NODE_VERSION = "14"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
