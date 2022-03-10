@@ -39,6 +39,11 @@ a:visited {
   font-size: 0.9em;
 }
 
+.btn-outline-primary {
+  color: black;
+  border-color: black;
+}
+
 .App {
   text-align: center;
 }
