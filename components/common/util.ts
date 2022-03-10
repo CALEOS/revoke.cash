@@ -141,7 +141,7 @@ function getTokenListUrl(chainId: number, standard: TokenStandard = 'ERC20'): st
     ERC20: {
       1: 'https://tokens.1inch.eth.link/',
       10: 'https://static.optimism.io/optimism.tokenlist.json',
-      40: 'https://github.com/telosnetwork/token-list/blob/main/telosevm.tokenlist.json',
+      40: 'https://raw.githubusercontent.com/telosnetwork/token-list/main/telosevm.tokenlist.json',
       56: 'https://raw.githubusercontent.com/pancakeswap/pancake-swap-interface/master/src/constants/token/pancakeswap.json',
       100: 'https://tokens.honeyswap.org',
       137: 'https://unpkg.com/quickswap-default-token-list@1.0.28/build/quickswap-default.tokenlist.json',

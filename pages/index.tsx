@@ -1,6 +1,5 @@
 import 'react-toastify/dist/ReactToastify.css'
 
-import axios from 'axios'
 import { providers } from 'ethers'
 import React, { useEffect, useState } from 'react'
 import Dashboard from 'components/Dashboard/Dashboard'
