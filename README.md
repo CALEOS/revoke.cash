@@ -24,6 +24,11 @@ cd revoke.cash
 yarn
 yarn dev #or `yarn start` to run prod build 
 ```
+NOTE: if deploying using the netlify cli you must execute build at the same time with the build flag. 
+```
+netlify deploy --build [--prod]
+```
+
 ## Credits
 Website created by Rosco Kalis after discussing the idea with Paul Berg at Devcon 5 in Osaka. Uses [wagmi](https://github.com/tmm/wagmi) and [ethers.js](https://github.com/ethers-io/ethers.js) for all Ethereum-related operations. Filters out unverified tokens using tokenlists. Built with React, Bootstrap and TypeScript.
 
