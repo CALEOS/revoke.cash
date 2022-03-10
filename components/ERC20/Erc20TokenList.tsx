@@ -28,29 +28,35 @@ function Erc20TokenList({
   tokenMapping,
   inputAddress
 }: Props) {
+  debugger;
   const [tokens, setTokens] = useState<Erc20TokenData[]>([])
   const [loading, setLoading] = useState<boolean>(true)
 
   const provider = useProvider()
+  debugger;
   const [{ data: networkData }] = useNetwork()
   const chainId = networkData?.chain?.id ?? 1
 
 
-  const loadData = useCallback(async () => {    
+  const loadData = useCallback(async () => {  
+    debugger;  
     if (!inputAddress) return
     if (!(provider instanceof multicall.MulticallProvider)) return
 
     setLoading(true)
 
     const allEvents = [...approvalEvents, ...transferEvents]
-
+    debugger;
     // Filter unique token contract addresses and convert all events to Contract instances
     const tokenContracts = allEvents
       .filter((event, i) => i === allEvents.findIndex((other) => event.address === other.address))
-      .map((event) => new Contract(getAddress(event.address), ERC20, provider))
+      .map((event) => new Contract(getAddress(event.address), ERC20, provider));
+    
+    debugger;
 
     const unsortedTokens = await Promise.all(
       tokenContracts.map(async (contract) => {
+        debugger;
         const tokenApprovals = approvalEvents.filter(approval => approval.address === contract.address)
         const registered = isRegistered(contract.address, tokenMapping)
         const icon = await getTokenIcon(contract.address, chainId, tokenMapping)
@@ -65,14 +71,15 @@ function Erc20TokenList({
         }
       })
     )
-
+    debugger;
     // Filter undefined tokens and sort tokens alphabetically on token symbol
     const sortedTokens = unsortedTokens
       .filter((token) => token !== undefined)
       .sort((a: any, b: any) => a.symbol.localeCompare(b.symbol))
-
+    debugger;
     setTokens(sortedTokens)
     setLoading(false)
+    debugger;
   }, [chainId, inputAddress, provider, tokenMapping]);
 
   useEffect(() => {

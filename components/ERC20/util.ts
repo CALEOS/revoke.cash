@@ -24,6 +24,7 @@ async function getAllowanceFromApproval(multicallContract: Contract, ownerAddres
 }
 
 export async function getTokenData(contract: Contract, ownerAddress: string, tokenMapping: TokenMapping = {}) {
+  debugger;
   const tokenData = tokenMapping[getAddress(contract.address)]
 
   const [totalSupplyBN, balance, symbol, decimals] = await Promise.all([
@@ -34,8 +35,9 @@ export async function getTokenData(contract: Contract, ownerAddress: string, tok
     tokenData?.decimals ?? unpackResult(contract.functions.decimals()),
     throwIfNotErc20(contract),
   ])
-
+  debugger;
   const totalSupply = totalSupplyBN.toString()
+  debugger;
   return { symbol, decimals, totalSupply, balance }
 }
 

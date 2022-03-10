@@ -19,6 +19,7 @@ function Erc721Token({ token, inputAddress, openSeaProxyAddress }: Props) {
   const [loading, setLoading] = useState<boolean>(true)
 
   const provider = useProvider()
+  debugger;
   const [{ data: networkData }] = useNetwork()
   const chainId = networkData?.chain?.id ?? 1
 

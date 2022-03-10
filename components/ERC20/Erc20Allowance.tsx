@@ -25,6 +25,7 @@ function Erc20Allowance({ spender, allowance, inputAddress, token, onRevoke}: Pr
   const [updatedAllowance, setUpdatedAllowance] = useState<string | undefined>()
 
   const provider = useProvider()
+  debugger;
   const [{ data: signer }] = useSigner()
   const [{ data: accountData }] = useAccount()
   const [{ data: networkData }] = useNetwork()

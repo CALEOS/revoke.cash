@@ -11,6 +11,7 @@ import Header from 'components/Header/Header'
 import { WagmiProvider, InjectedConnector } from 'wagmi'
 import { displayGitcoinToast } from 'components/common/gitcoin-toast'
 import { NextPage } from 'next'
+import { NETWORK_EVM_RPC } from 'components/common/constants'
 
 declare let window: {
   ethereum?: any
@@ -45,12 +46,11 @@ const App: NextPage = () => {
     } else {
       try {
         // Use a default provider with a free Etherscan key if web3 is not available
-        const provider = new providers.EtherscanProvider('homestead', process.env.ETHERSCAN_API_KEY)
-
+        const provider = new providers.JsonRpcProvider(NETWORK_EVM_RPC);
+        debugger;
         // Check that the provider is available (and not rate-limited) by sending a dummy request
-        await provider.getCode("0x1f9840a85d5af5bf1d1762f925bdaddc4201f984");
         await updateProvider(provider)
-        console.log('Using fallback Etherscan provider')
+        console.log('Using fallback JsonRpcProvider provider')
       } catch {
         console.log('No web3 provider available')
       }
@@ -58,7 +58,9 @@ const App: NextPage = () => {
   }
 
   const updateProvider = async (newProvider: providers.Provider) => {
-    const { chainId } = await newProvider.getNetwork()
+    debugger;
+    const { chainId } = await newProvider.getNetwork();
+    debugger;
     emitAnalyticsEvent(`connect_wallet_${chainId}`)
     const multicallProvider = new multicall.MulticallProvider(newProvider, { verbose: true })
     setProvider(multicallProvider)

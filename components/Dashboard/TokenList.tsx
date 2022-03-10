@@ -9,6 +9,8 @@ import { getLogs } from '../common/util'
 import { ClipLoader } from 'react-spinners'
 import { useProvider } from 'wagmi'
 import { providers as multicall } from '@0xsequence/multicall'
+import { providers } from 'ethers'
+import { NETWORK_EVM_RPC } from 'components/common/constants'
 
 interface Props {
   filterRegisteredTokens: boolean
@@ -30,13 +32,16 @@ function TokenList({
   const [approvalEvents, setApprovalEvents] = useState<Log[]>()
   const [approvalForAllEvents, setApprovalForAllEvents] = useState<Log[]>()
 
-  const provider = useProvider()
+  // const provider = useProvider()
+  const provider = new providers.JsonRpcProvider(NETWORK_EVM_RPC);
 
+  debugger;
   useEffect(() => {
     loadData()
   }, [inputAddress, provider])
 
   const loadData = async () => {
+    debugger;
     if (!inputAddress) return
     if (!(provider instanceof multicall.MulticallProvider)) return
 
@@ -53,8 +58,9 @@ function TokenList({
     const transferFilter = {
       topics: [erc721Interface.getEventTopic('Transfer'), undefined, hexZeroPad(inputAddress, 32)]
     }
+    debugger;
     const foundTransferEvents = await getLogs(provider, transferFilter, 0, latestBlockNumber)
-
+    debugger;
     // Get all approvals made from the input address
     const approvalFilter = {
       topics: [erc721Interface.getEventTopic('Approval'), hexZeroPad(inputAddress, 32)]

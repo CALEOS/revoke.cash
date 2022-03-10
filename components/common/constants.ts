@@ -1,7 +1,7 @@
 export const TRUSTWALLET_BASE_URL =
   "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains";
 export const DAPP_LIST_BASE_URL = "/dapp-contract-list";
-
+export const NETWORK_EVM_RPC='https://mainnet.telos.net/evm';
 export const ADDRESS_ZERO_PADDED =
   "0x0000000000000000000000000000000000000000000000000000000000000000";
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000';

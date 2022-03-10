@@ -163,11 +163,11 @@ export async function getTokenIcon(tokenAddress: string, chainId: number, tokenM
   // Retrieve a token icon from the token list if specified (filtering relative paths)
   const tokenData = tokenMapping[normalisedAddress]
   const iconFromMapping = !tokenData?.logoURI?.startsWith('/') && tokenData?.logoURI
-
+  debugger;
   // Fall back to TrustWallet/assets for logos
   const networkName = getTrustWalletName(chainId)
   const iconFromTrust = networkName && `${TRUSTWALLET_BASE_URL}/${networkName}/assets/${normalisedAddress}/logo.png`
-
+  debugger;
   const icon = iconFromMapping || iconFromTrust || 'erc20.png'
 
   return icon
@@ -211,9 +211,12 @@ export const getLogs = async (
   fromBlock: number,
   toBlock: number
 ): Promise<Log[]> => {
+  debugger;
   const filter = { ...baseFilter, fromBlock, toBlock };
+  debugger;
   try {
     const result = await provider.getLogs(filter);
+    debugger;
     return result;
   } catch (error) {
     const errorMessage = error?.error?.message ?? error?.message;

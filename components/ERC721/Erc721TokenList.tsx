@@ -35,6 +35,7 @@ function Erc721TokenList({
   const [openSeaProxyAddress, setOpenSeaProxyAddress] = useState<string>()
 
   const provider = useProvider()
+  debugger;
   const [{ data: networkData }] = useNetwork()
   const chainId = networkData?.chain?.id ?? 1
 

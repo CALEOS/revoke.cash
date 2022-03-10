@@ -18,6 +18,7 @@ function Erc20Token({ token, inputAddress }: Props) {
 
   const loadData = useCallback(async (token) => {    
     setLoading(true)
+    debugger;
 
     // Filter out zero-value allowances and sort from high to low
     const loadedAllowances = (await getAllowancesFromApprovals(token.contract, inputAddress, token.approvals))
@@ -39,6 +40,7 @@ function Erc20Token({ token, inputAddress }: Props) {
   if (loading) {
     return (<div className="Token"><ClipLoader size={20} color={'#000'} loading={loading} /></div>)
   }
+  debugger;
 
   return (
     <div className="Token">

@@ -20,6 +20,7 @@ function Erc721Allowance({ token, allowance, inputAddress, onRevoke }: Props) {
   const { spender, ensSpender, spenderAppName, tokenId } = allowance
 
   const provider = useProvider()
+  debugger;
   const [{ data: signer }] = useSigner()
   const [{ data: accountData }] = useAccount()
   const [{ data: networkData }] = useNetwork()
