@@ -1,7 +1,6 @@
-import '../styles/index.scss'
+import '../styles/index.css';
 import type { AppProps } from 'next/app';
 import { NextSeo } from 'next-seo';
-import Script from 'next/script';
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>

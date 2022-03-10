@@ -15,11 +15,6 @@ code {
   color: red;
 }
 
-// /////////////////////////////////////////////////////////////////////////////
-
-$primary: black;
-$secondary: black;
-
 @import "bootstrap";
 
 body {
@@ -116,7 +111,6 @@ a:visited {
   margin-left: 5px;
 }
 
-// Make all buttons just a bit smaller so more information can fit on the screen
 .btn-sm {
   padding: 0rem 0.4rem;
   line-height: 1.4;
@@ -134,8 +128,6 @@ a:visited {
   width: 70px;
 }
 
-// At around 600px the update button does not fit on the same line any more,
-// so move all buttons over to a new line
 @media (max-width: 600px) {
   .form-inline label {
     width: 100%;
@@ -146,8 +138,6 @@ a:visited {
   }
 }
 
-// Around 850px the full address doesn't fit on the screen any more,
-// so we move to a shortened version of the address
 .AllowanceTextSmallScreen { display: none; }
 .AllowanceTextBigScreen { display: inline; }
 @media (max-width: 850px) {
